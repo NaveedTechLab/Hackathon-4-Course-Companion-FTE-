@@ -7,11 +7,20 @@
   --background-rgb: 249, 250, 251;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background-color: rgb(var(--background-rgb));
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 @layer utilities {
@@ -22,18 +31,34 @@ body {
 
 /* Dashboard container - responsive padding */
 .dashboard-container {
-  @apply w-full max-w-7xl mx-auto px-4 py-6;
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
 }
 
 @media (min-width: 640px) {
   .dashboard-container {
-    @apply px-6 py-8;
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .dashboard-container {
+    padding: 2rem;
   }
 }
 
 @media (min-width: 1024px) {
   .dashboard-container {
-    @apply px-8;
+    padding: 2rem 2.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .dashboard-container {
+    padding: 2rem 3rem;
   }
 }
 
@@ -48,8 +73,8 @@ body {
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -58,7 +83,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
-  border-radius: 3px;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -155,7 +180,6 @@ select {
 @media (hover: none) and (pointer: coarse) {
   button, a, [role="button"] {
     min-height: 44px;
-    min-width: 44px;
   }
 }
 
@@ -188,4 +212,44 @@ select {
 
 .text-responsive-2xl {
   @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+}
+
+/* Responsive grid utilities */
+.grid-responsive {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6;
+}
+
+/* Container queries support */
+@supports (container-type: inline-size) {
+  .container-responsive {
+    container-type: inline-size;
+  }
+}
+
+/* Ensure images don't overflow */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Better button defaults */
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Responsive tables */
+.table-responsive {
+  @apply overflow-x-auto;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
 }
